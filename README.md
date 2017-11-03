@@ -3,6 +3,6 @@
 
 ![](doc/Landing.png)
 
-![](doc/CreatePages.png)
+![](doc/CreatePages.jpg)
 
 ![](doc/Play.png)
