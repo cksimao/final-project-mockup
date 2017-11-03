@@ -60,11 +60,11 @@ userRoutes.route('/profile', {
   },
 });
 
-export const filterPageRouteName = 'Filter_Page';
-userRoutes.route('/filter', {
-  name: filterPageRouteName,
+export const playPageRouteName = 'Play_Page';
+userRoutes.route('/play', {
+  name: playPageRouteName,
   action() {
-    BlazeLayout.render('User_Layout', { main: filterPageRouteName });
+    BlazeLayout.render('User_Layout', { main: playPageRouteName });
   },
 });
 

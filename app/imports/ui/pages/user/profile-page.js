@@ -30,12 +30,12 @@ Template.Profile_Page.helpers({
   profile() {
     return Profiles.findDoc(FlowRouter.getParam('username'));
   },
-  interests() {
+  currentClass() {
     const profile = Profiles.findDoc(FlowRouter.getParam('username'));
-    const selectedInterests = profile.interests;
+    const selectedClass = profile.currentClass;
     return profile && _.map(Interests.findAll(),
-            function makeInterestObject(interest) {
-              return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
+            function makeCurrentClassesObject(currentClasses) {
+              return { label: currentClasses.name, selected: _.contains(selectedClass, currentClasses.name) };
             });
   },
 });
@@ -46,17 +46,16 @@ Template.Profile_Page.events({
     event.preventDefault();
     const firstName = event.target.First.value;
     const lastName = event.target.Last.value;
-    const title = event.target.Title.value;
     const username = FlowRouter.getParam('username'); // schema requires username.
     const picture = event.target.Picture.value;
     const github = event.target.Github.value;
     const facebook = event.target.Facebook.value;
     const instagram = event.target.Instagram.value;
     const bio = event.target.Bio.value;
-    const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
-    const interests = _.map(selectedInterests, (option) => option.value);
+    const selectedClasses = _.filter(event.target.CurrentClasses.selectedOptions, (option) => option.selected);
+    const currentClasses = _.map(selectedClasses, (option) => option.value);
 
-    const updatedProfileData = { firstName, lastName, title, picture, github, facebook, instagram, bio, interests,
+    const updatedProfileData = { firstName, lastName, picture, github, facebook, instagram, bio, currentClasses,
       username };
 
     // Clear out any old validation errors.
